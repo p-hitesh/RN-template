@@ -1,7 +1,7 @@
 {
-  "name": "react-redux-toolkit-typescript-boilerplate",
+  "name": "it-sys-poc",
   "version": "1.0.0",
-  "homepage": "https://github.com/hiteshpatel98/react-frontend",
+  "homepage": "/",
   "author": "Hitesh Patel",
   "private": true,
   "scripts": {
