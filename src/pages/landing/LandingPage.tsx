@@ -22,7 +22,7 @@ function LandingPage() {
           <div className="content">
             <div className="text">
               <h1>Hitesh Patel</h1>
-              <span>Senior Software Enginneer</span>
+              <span>Software Developer</span>
               <p>{data.title}</p>
               <p>{data.description}</p>
             </div>
