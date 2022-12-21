@@ -1,19 +1,18 @@
-
-.container{
-    display: flex;
-    flex-direction: row;
-    overflow: auto;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+.container {
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
-.logoContainer{
-    flex: 5;
-    overflow: auto;
-    mix-blend-mode: hard-light;
+.logoContainer {
+  flex: 5;
+  overflow: auto;
+  mix-blend-mode: hard-light;
 }
 
-.formContainer{
-    flex: 3;
+.formContainer {
+  flex: 3;
 }
