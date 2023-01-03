@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import CustomButton from "../../components/buttonComponents/CustomButton";
 import LoginInput from "../../components/inputComponents/LoginInput";
 import * as CONST from "../../resources/constants";
 import "./login.scss";
@@ -15,6 +16,10 @@ function LoginPage() {
     console.log(inputValue);
   };
 
+  const handleSubmit = (e: any) => {
+    console.log(e.target);
+  };
+
   return (
     <div className="container">
       <div className="wrapper">
@@ -22,7 +27,7 @@ function LoginPage() {
         <div className="formContainer">
           <p className="titleStyle">Login</p>
           <p className="subTitleStyle">IT Systems</p>
-          <form>
+          <form onSubmit={handleSubmit}>
             <LoginInput
               type="text"
               value={userName}
@@ -39,6 +44,13 @@ function LoginPage() {
               name="password"
               onChange={handleChange}
             />
+            <input type="checkbox" name="rememberMe"></input>
+            <label htmlFor="rememberMe">remember me</label>
+            <CustomButton></CustomButton>
+            <div className="formFooter">
+              <p>new user? signUp</p>
+              <p>forgot your password</p>
+            </div>
           </form>
         </div>
       </div>
