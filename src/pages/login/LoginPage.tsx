@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import CustomButton from "../../components/buttonComponents/CustomButton";
 import LoginInput from "../../components/inputComponents/LoginInput";
 import * as CONST from "../../resources/constants";
+import { LoginAction } from "../../store/auth/user";
+import { useAppDispatch } from "../../store/hooks";
 import "./login.scss";
 function LoginPage() {
   const [inputValue, setInputValue] = useState({ userName: "", password: "" });
   const { userName, password } = inputValue;
+  const dispatch = useAppDispatch();
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -46,7 +49,10 @@ function LoginPage() {
             />
             <input type="checkbox" name="rememberMe"></input>
             <label htmlFor="rememberMe">remember me</label>
-            <CustomButton></CustomButton>
+            <CustomButton
+              title="Login"
+              onClick={() => dispatch(LoginAction(userName, password))}
+            ></CustomButton>
             <div className="formFooter">
               <p>new user? signUp</p>
               <p>forgot your password</p>
