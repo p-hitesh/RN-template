@@ -1,0 +1,16 @@
+.header{
+    &_con{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-inline: 1rem;
+        margin-top: 1rem;
+    }
+    &_profile-con{
+        display: flex;
+    }
+    &_left-wrapper{
+        display: flex;
+        height: 2rem;
+    }
+}
