@@ -24,7 +24,9 @@
 }
 
 .formContainer {
+  position: relative;
   flex: 3;
+  left: -2rem;
 }
 
 .titleStyle {
@@ -48,4 +50,37 @@
 
 .formFooter {
   display: flex;
+  font-size: small;
+  justify-content: space-between;
+  &_row{
+    display: flex;
+    flex-direction: row;
+    // margin-right: 2rem;
+  }
+  &_light-text{
+    color: #B7A3A3;
+  }
+  &_medium-text{
+    color: black;
+    margin-left: 0.1rem;
+  }
+}
+
+form{
+  display: grid;
+}
+
+.rememberme{
+  &_con{
+    max-height: fit-content;
+    display: flex;
+    margin-top: 0.5rem;
+  }
+  &_box{
+    max-height: fit-content;
+    height: 0.6rem;
+  }
+  &_text{
+    font-size: xx-small;
+  }
 }

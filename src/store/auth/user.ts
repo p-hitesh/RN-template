@@ -21,8 +21,9 @@ const Auth = createSlice({
     UserLogin: (state, action) => {
       state.isLogin = true;
       //   state.data = action.payload;
+      console.log(action);
     },
-    UserRegister: (state, action) => {
+    UserRegister: () => {
       //
     },
   },
@@ -43,10 +44,11 @@ export const LoginAction =
     // } catch (error) {
     //   alert(error);
     // }
+    console.log(userName, password);
     dispatch(UserLogin(true));
   };
 export const RegisterAction =
-  (userName: string, password: string) => async (dispatch: any) => {
+  (userName: string, password: string) => async () => {
     try {
       Storage.setItem("userName", userName);
       Storage.setItem("password", password);

@@ -7,7 +7,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name?: string;
   placeholder?: string;
   type?: string;
-  onChange?: any;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const LoginInput: FC<InputProps> = ({

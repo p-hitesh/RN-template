@@ -10,7 +10,7 @@ function LoginPage() {
   const { userName, password } = inputValue;
   const dispatch = useAppDispatch();
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setInputValue((prev) => ({
       ...prev,
@@ -19,8 +19,8 @@ function LoginPage() {
     console.log(inputValue);
   };
 
-  const handleSubmit = (e: any) => {
-    console.log(e.target);
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    console.log(e);
   };
 
   return (
@@ -47,15 +47,27 @@ function LoginPage() {
               name="password"
               onChange={handleChange}
             />
-            <input type="checkbox" name="rememberMe"></input>
-            <label htmlFor="rememberMe">remember me</label>
+            <div className="rememberme_con">
+              <input
+                className="rememberme_box"
+                type="checkbox"
+                name="rememberMe"
+              ></input>
+              <label className="rememberme_text" htmlFor="rememberMe">
+                remember me
+              </label>
+            </div>
             <CustomButton
-              title="Login"
               onClick={() => dispatch(LoginAction(userName, password))}
-            ></CustomButton>
+            >
+              Login
+            </CustomButton>
             <div className="formFooter">
-              <p>new user? signUp</p>
-              <p>forgot your password</p>
+              <div className="formFooter_row">
+                <p className="formFooter_light-text">new user?</p>
+                <p className="formFooter_medium-text">signup</p>
+              </div>
+              <p className="formFooter_light-text">forgot your password</p>
             </div>
           </form>
         </div>
