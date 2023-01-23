@@ -57,6 +57,7 @@ function LoginPage() {
                 remember me
               </label>
             </div>
+            <div className="spacer"></div>
             <CustomButton
               onClick={() => dispatch(LoginAction(userName, password))}
             >

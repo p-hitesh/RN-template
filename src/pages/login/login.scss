@@ -25,7 +25,7 @@
 
 .formContainer {
   position: relative;
-  flex: 3;
+  flex: 2;
   left: -2rem;
 }
 
@@ -83,4 +83,8 @@ form {
   &_text {
     font-size: xx-small;
   }
+}
+
+.spacer {
+  height: 1rem;
 }
