@@ -1,18 +1,90 @@
 .container {
   display: flex;
-  flex-direction: row;
   overflow: auto;
   align-items: center;
   justify-content: center;
   height: 100vh;
+  background-color: whitesmoke;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  overflow: hidden;
+  width: 90%;
 }
 
 .logoContainer {
+  position: relative;
   flex: 5;
   overflow: auto;
   mix-blend-mode: hard-light;
+  left: -3rem;
 }
 
 .formContainer {
-  flex: 3;
+  position: relative;
+  flex: 2;
+  left: -2rem;
+}
+
+.titleStyle {
+  font-family: "Abyssinica SIL";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  color: #005197;
+}
+
+.subTitleStyle {
+  position: relative;
+  top: -1.75rem;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #ada0a0;
+}
+
+.formFooter {
+  display: flex;
+  font-size: small;
+  justify-content: space-between;
+  &_row {
+    display: flex;
+    flex-direction: row;
+    // margin-right: 2rem;
+  }
+  &_light-text {
+    color: #b7a3a3;
+  }
+  &_medium-text {
+    color: black;
+    margin-left: 0.1rem;
+  }
+}
+
+form {
+  display: grid;
+}
+
+.rememberme {
+  &_con {
+    max-height: fit-content;
+    display: flex;
+    margin-top: 0.5rem;
+  }
+  &_box {
+    max-height: fit-content;
+    height: 0.6rem;
+  }
+  &_text {
+    font-size: xx-small;
+  }
+}
+
+.spacer {
+  height: 1rem;
 }

@@ -12,16 +12,16 @@ export default class Environment {
   }
 
   public static isOffline(): boolean {
-    const IS_OFFLINE = process.env.REACT_APP_IS_OFFLINE || false;
+    const IS_OFFLINE = process.env.KSB_IS_OFFLINE || false;
     return JSON.parse(IS_OFFLINE.toString());
   }
 
   public static applyEncryption(): boolean {
-    const IS_OFFLINE = process.env.REACT_APP_APPLY_ENCRYPTION || false;
+    const IS_OFFLINE = process.env.KSB_APPLY_ENCRYPTION || false;
     return JSON.parse(IS_OFFLINE.toString());
   }
 
   public static secretKey(): string {
-    return process.env.REACT_APP_SECRET_KEY || "";
+    return process.env.KSB_SECRET_KEY || "";
   }
 }
