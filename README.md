@@ -44,7 +44,7 @@ Try it!! I am happy to hear your feedback or any kind of new features.
 ### Handle Multiple Environments
 
 - Make a new file in the root directory with the specifying the environment in file name. Example(`.env.{environment_name}`) -  `.env.development`
-- Make sure, all Variables should start with the prefix KSB_ . Example(`KSB_{variable_name}`) -  `KSB_APPLY_ENCRYPTION`
+- Make sure, all Variables should start with the prefix REACT_APP_ . Example(`REACT_APP_{variable_name}`) -  `REACT_APP_APPLY_ENCRYPTION`
 
 
 ### Running the build

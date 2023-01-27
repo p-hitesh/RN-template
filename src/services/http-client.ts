@@ -10,7 +10,7 @@ export default class HttpClient {
   // Here you can use your server URL
 
   private static readonly baseURL: string =
-    process.env.KSB_API_BASEURL || "http://localhost:3000";
+    process.env.REACT_APP_API_BASEURL || "http://localhost:3000";
 
   private static buildHeader(obj = {}): AxiosRequestHeaders {
     const header = {
