@@ -1,62 +1,52 @@
 import React, { useState } from "react";
-import { AgGridReact } from "ag-grid-react";
-import "ag-grid-community/dist/styles/ag-grid.css";
-import "ag-grid-community/dist/styles/ag-theme-balham.css";
+import DataTable from "react-data-table-component";
 
 interface Props {
-  data: any[];
+  data: any;
 }
 
 const CustomTable: React.FC<Props> = ({ data }) => {
   const [columnDefs, setColumnDefs] = useState<any[]>([]);
-  const [rowData, setRowData] = useState<any[]>([]);
-
-  // const exportToPDF = () => {
-  //   var docDefinition = {
-  //     content: [
-  //       {
-  //         table: {
-  //           headerRows: 1,
-  //           widths: Array(columnDefs.length).fill('*'),
-  //           body: [
-  //             columnDefs.map(column => column.headerName),
-  //             ...rowData.map(row =>
-  //               Object.values(row)
-  //             ),
-  //           ]
-  //         }
-  //       }
-  //     ],
-  //     pageSize: 'A4',
-  //     pageOrientation: 'landscape',
-  //   };
-
-  //   pdfMake.createPdf(docDefinition).download();
-  // }
 
   React.useEffect(() => {
     const firstRow = data[0];
     const colDefs = Object.keys(firstRow).map((col) => ({
-      headerName: col,
-      field: col,
+      name: col,
+      selector: col,
     }));
     setColumnDefs(colDefs);
-    setRowData(data);
   }, [data]);
+
+  const customStyles = {
+    rows: {
+      style: {
+        "&:nth-child(even)": {
+          backgroundColor: "#C4D5E359",
+        },
+      },
+    },
+    headCells: {
+      style: {
+        backgroundColor: "#4A86B8",
+        color: "white",
+      },
+    },
+  };
 
   return (
     <div>
-      <button
-      //  onClick={exportToPDF}
-      >
-        Export to PDF
-      </button>
-      <div
-        className="ag-theme-balham"
-        style={{ height: "500px", width: "100%" }}
-      >
-        <AgGridReact columnDefs={columnDefs} rowData={rowData}></AgGridReact>
-      </div>
+      <DataTable
+        columns={columnDefs}
+        data={data}
+        keyField="id"
+        customStyles={customStyles}
+        pagination
+        paginationPerPage={15}
+        // striped
+        responsive
+        highlightOnHover
+        pointerOnHover
+      />
     </div>
   );
 };

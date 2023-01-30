@@ -10,7 +10,7 @@ const Header = () => {
       <div className="header_left-wrapper">
         <div className="header_profile-con">
           <img src={CONST.user_avatar_icon} className="header_user-icon" />
-          <p>username</p>
+          <p className="header_profile-name">username</p>
         </div>
         <SearchInput datas={searchArrays}></SearchInput>
       </div>

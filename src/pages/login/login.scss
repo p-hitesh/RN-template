@@ -51,6 +51,7 @@
 .formFooter {
   display: flex;
   font-size: small;
+  width: 100%;
   justify-content: space-between;
   &_row {
     display: flex;
@@ -68,6 +69,7 @@
 
 form {
   display: grid;
+  height: 75%;
 }
 
 .rememberme {
@@ -87,4 +89,18 @@ form {
 
 .spacer {
   height: 1rem;
+}
+
+.bottom_con{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.top_con{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }

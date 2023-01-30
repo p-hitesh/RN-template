@@ -1,0 +1,21 @@
+.custom-search{
+    display: flex;
+    align-items: center;
+    
+}
+
+.custom-input{
+    background: rgba(196, 213, 227, 0.35);
+    border: 1px solid rgba(0, 86, 157, 0.7);
+    border-radius: 20px;
+    padding: 4px 8px;
+    gap: 12px;
+}
+
+.datas{
+    position: absolute;
+    background: #C4D5E3;
+    mix-blend-mode: normal;
+    border: 1px solid rgba(0, 86, 157, 0.7);
+    border-radius: 20px;
+}

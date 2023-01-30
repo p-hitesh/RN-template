@@ -21,6 +21,7 @@ const SearchInput: React.FC<Props> = ({ datas }) => {
   return (
     <div className="custom-search">
       <input
+        className="custom-input"
         type="text"
         placeholder="Search"
         value={searchValue}
