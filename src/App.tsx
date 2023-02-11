@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/dashboard/Dashboard";
+import DetailPage from "./pages/detail/DetailPage";
 import LoginPage from "./pages/login/LoginPage";
 import { useAppSelector } from "./store/hooks";
 
@@ -14,7 +15,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           {isUserAvailable ? (
-            <Route path={"/"} element={<Dashboard />}></Route>
+            <>
+              <Route path={"/"} element={<Dashboard />}></Route>
+              <Route path={"/detail"} element={<DetailPage />}></Route>
+            </>
           ) : (
             <Route path="/" element={<LoginPage />}></Route>
           )}

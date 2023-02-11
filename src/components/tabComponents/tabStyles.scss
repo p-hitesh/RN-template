@@ -1,0 +1,20 @@
+.optionButton {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  background: rgba(0, 86, 157, 0.5);
+  border-radius: 8px 8px 0px 0px;
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 115%;
+  color: black;
+  margin-right: 0.5rem;
+  padding-inline: 0.5rem;
+}
+
+.unselected {
+  color: white;
+  background-color: rgba(29, 35, 39, 0.2);
+}

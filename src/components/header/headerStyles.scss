@@ -4,20 +4,19 @@
     align-items: center;
     justify-content: space-between;
     padding-inline: 1rem;
-    margin-top: 1rem;
-    padding-bottom: 1.5rem;
+    height: 13vh;
   }
   &_profile-con {
     display: flex;
     align-items: center;
     margin-right: 1rem;
   }
-  &_user-icon{
+  &_user-icon {
     height: 2rem;
     margin-right: 1rem;
   }
-  &_profile-name{
-    font-family: 'Abhaya Libre ExtraBold';
+  &_profile-name {
+    font-family: "Abhaya Libre ExtraBold";
     font-style: normal;
     font-weight: 800;
     font-size: large;
@@ -26,7 +25,7 @@
     display: flex;
     height: 2rem;
   }
-  &_ksb-icon{
+  &_ksb-icon {
     height: 3rem;
   }
 }
