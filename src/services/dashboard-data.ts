@@ -26,7 +26,16 @@ export default class DashboardDataService {
     return data;
   }
 
+  private static async detailCard(id: string) {
+    const { data } = await HttpClient.get(`${this.GET_TABLE_DATA}/${id}`);
+    return data;
+  }
+
   public static async getDashboardData() {
     return await DashboardDataService.table();
+  }
+
+  public static async getDetailCardData(id: string) {
+    return await DashboardDataService.detailCard(id);
   }
 }
