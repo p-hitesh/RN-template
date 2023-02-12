@@ -82,7 +82,7 @@ const Dashboard = () => {
     // console.log(e);
     // handleOpenModal();
     setIsLoading(true);
-    dispatch(getDetailCardData(e.id));
+    dispatch(getDetailCardData(e.data.id));
     // navigate("/detail", { state: e });
   };
 

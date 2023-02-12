@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import DataTable from "react-data-table-component";
+import { AgGridReact } from "ag-grid-react";
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-alpine.css";
+import "./tableStyles.scss";
 
 interface Props {
   data: any;
@@ -9,68 +12,38 @@ interface Props {
 
 const CustomTable: React.FC<Props> = ({ data, onRowClick }) => {
   const [columnDefs, setColumnDefs] = useState<any[]>([]);
-  // const [filteredData, setFilteredData] = useState<any[]>([]);
 
   React.useEffect(() => {
     const firstRow = data[0];
     const colDefs = Object.keys(firstRow).map((col) => ({
-      name: col,
-      selector: (row: any) => row[col],
-      resizable: true,
+      headerName: col,
+      field: col,
+      // resizable: true,
+      // pinned: col === "id" ? "left" : "",
     }));
     setColumnDefs(colDefs);
   }, [data]);
 
-  const customStyles = {
-    rows: {
-      style: {
-        "&:nth-child(even)": {
-          backgroundColor: "#C4D5E359",
-        },
-      },
-    },
-    headCells: {
-      style: {
-        backgroundColor: "#4A86B8",
-        color: "white",
-      },
-    },
+  const rowStyles = (params: any) => {
+    if (params.node.rowIndex % 2 === 0) {
+      return { backgroundColor: "#C4D5E359" };
+    }
   };
 
-  const loadingComponent = () => {
-    return (
-      <div
-        style={{
-          display: "flex",
-          height: "80vh",
-          width: "100%",
-          alignItems: "center",
-          justifyItems: "center",
-        }}
-      >
-        <p>loading...</p>
-      </div>
-    );
-  };
+  // const headerRowStyles = {
+  //   backgroundColor: "#4A86B8",
+  //   color: "white",
+  // };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "85vh" }}>
-      <DataTable
-        columns={columnDefs}
-        data={data}
-        keyField="id"
-        customStyles={customStyles}
-        pagination
-        // paginationPerPage={15}
-        // striped
-        responsive
-        highlightOnHover
-        pointerOnHover
+    <div className="ag-theme-alpine" style={{ height: "85vh", width: "100%" }}>
+      <AgGridReact
+        columnDefs={columnDefs}
+        rowData={data}
         onRowClicked={onRowClick}
-        fixedHeader
-        progressPending={!columnDefs || columnDefs.length === 0}
-        progressComponent={loadingComponent()}
-        persistTableHead
+        getRowStyle={rowStyles}
+        pagination
+        paginationPageSize={10}
       />
     </div>
   );
