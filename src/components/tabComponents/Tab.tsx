@@ -12,7 +12,7 @@ function Tab(props: any) {
         type="button"
         onClick={() => {
           setTabIndex(index);
-          console.log(index);
+          // console.log(index);
         }}
       >
         {item}

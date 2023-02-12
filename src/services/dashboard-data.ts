@@ -31,11 +31,23 @@ export default class DashboardDataService {
     return data;
   }
 
+  private static async editDetailCard(id: string, payload: any) {
+    const { data } = await HttpClient.put(
+      `${this.GET_TABLE_DATA}/${id}`,
+      payload
+    );
+    return data;
+  }
+
   public static async getDashboardData() {
     return await DashboardDataService.table();
   }
 
   public static async getDetailCardData(id: string) {
     return await DashboardDataService.detailCard(id);
+  }
+
+  public static async updateDetailCard(id: string, payload: any) {
+    return await DashboardDataService.editDetailCard(id, payload);
   }
 }

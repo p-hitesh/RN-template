@@ -21,7 +21,7 @@ const Auth = createSlice({
     UserLogin: (state, action) => {
       state.isLogin = true;
       //   state.data = action.payload;
-      console.log(action);
+      // console.log(action);
     },
     UserRegister: () => {
       //

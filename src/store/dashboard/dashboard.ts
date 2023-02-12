@@ -5,13 +5,15 @@ import DashboardDataService, {
 } from "../../services/dashboard-data";
 
 interface DashboardPageState {
-  data?: IDashboardData;
+  dashboardData?: IDashboardData;
+  detailCardData?: IDashboardData;
   loading: boolean;
   error?: string;
 }
 
 const initialState: DashboardPageState = {
-  data: undefined,
+  dashboardData: undefined,
+  detailCardData: undefined,
   loading: false,
   error: undefined,
 };
@@ -21,6 +23,28 @@ export const getDashboardTable = createAsyncThunk(
   async () => {
     try {
       return DashboardDataService.getDashboardData();
+    } catch (error_) {
+      return error_;
+    }
+  }
+);
+
+export const getDetailCardData = createAsyncThunk(
+  "dashboard/entry/{id}",
+  async (id: string) => {
+    try {
+      return DashboardDataService.getDetailCardData(id);
+    } catch (error_) {
+      return error_;
+    }
+  }
+);
+
+export const updateDetailCardData = createAsyncThunk(
+  "dashboard/entry/{id}",
+  async (id: string, payload: any) => {
+    try {
+      return DashboardDataService.updateDetailCard(id, payload);
     } catch (error_) {
       return error_;
     }
@@ -37,9 +61,22 @@ const dashboardReducer = createSlice({
     });
     builder.addCase(getDashboardTable.fulfilled, (state, action) => {
       state.loading = false;
-      state.data = action.payload;
+      state.dashboardData = action.payload;
     });
     builder.addCase(getDashboardTable.rejected, (state, action) => {
+      state.loading = false;
+      // action.payload contains error information
+      state.error = error(action.payload);
+    });
+
+    builder.addCase(getDetailCardData.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getDetailCardData.fulfilled, (state, action) => {
+      state.loading = false;
+      state.detailCardData = action.payload;
+    });
+    builder.addCase(getDetailCardData.rejected, (state, action) => {
       state.loading = false;
       // action.payload contains error information
       state.error = error(action.payload);

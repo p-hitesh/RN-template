@@ -48,7 +48,6 @@ const Modal: React.FC<PropsWithChildren<ModalProps>> = ({
 
   const handleMouseDown = (event: React.MouseEvent) => {
     if (!modalRef.current) return;
-    console.log("mouseDown");
     setDragging(true);
     setOriginalX(event.clientX);
     setOriginalY(event.clientY);

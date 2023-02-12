@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import CustomButton from "../../components/buttonComponents/CustomButton";
 import LoginInput from "../../components/inputComponents/LoginInput";
 import * as CONST from "../../resources/constants";
@@ -16,16 +16,12 @@ function LoginPage() {
       ...prev,
       [name]: value,
     }));
-    console.log(inputValue);
+    // console.log(inputValue);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     console.log(e);
   };
-
-  useEffect(() => {
-    console.log(process.env);
-  }, []);
 
   return (
     <div className="container">

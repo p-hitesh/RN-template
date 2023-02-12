@@ -16,6 +16,7 @@ const CustomTable: React.FC<Props> = ({ data, onRowClick }) => {
     const colDefs = Object.keys(firstRow).map((col) => ({
       name: col,
       selector: (row: any) => row[col],
+      resizable: true,
     }));
     setColumnDefs(colDefs);
   }, [data]);

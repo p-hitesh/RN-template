@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./searchInputStyle.scss";
 import * as CONST from "../../resources/constants";
 import { useAppDispatch } from "../../store/hooks";
-import { getDetailCardData } from "../../store/dashboard/detail-card";
+import { getDetailCardData } from "../../store/dashboard/dashboard";
 
 interface Props {
   datas: any[];
@@ -14,6 +14,7 @@ const SearchInput: React.FC<Props> = ({ datas, onSearch }) => {
   const [searchValue, setSearchValue] = useState("");
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const [filteredDatas, setFilteredDatas] = useState<any[]>([]);
+  const listRef = useRef<HTMLLIElement>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
@@ -36,12 +37,16 @@ const SearchInput: React.FC<Props> = ({ datas, onSearch }) => {
     }
   };
 
+  const checkFocus = () => {
+    if (document.activeElement !== listRef.current) setIsSearchExpanded(false);
+  };
+
   useEffect(() => {
     checkIfSearchExpanded();
   }, [searchValue, filteredDatas]);
 
   const onRowClick = (e: any) => {
-    console.log(e);
+    // console.log(e);
     dispatch(getDetailCardData(e.id));
   };
 
@@ -62,7 +67,7 @@ const SearchInput: React.FC<Props> = ({ datas, onSearch }) => {
           placeholder="Search"
           value={searchValue}
           onChange={handleChange}
-          onBlur={() => setIsSearchExpanded(false)}
+          onBlur={checkFocus}
           onFocus={() => checkIfSearchExpanded()}
         />
         <img
@@ -75,7 +80,12 @@ const SearchInput: React.FC<Props> = ({ datas, onSearch }) => {
       {filteredDatas.length > 0 && (
         <ul className="datas">
           {filteredDatas.map((data, index) => (
-            <li tabIndex={0} key={index} onClick={() => onRowClick(data)}>
+            <li
+              tabIndex={0}
+              key={index}
+              onClick={() => onRowClick(data)}
+              ref={listRef}
+            >
               {data.value}
             </li>
           ))}

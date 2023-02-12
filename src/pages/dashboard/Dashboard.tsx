@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../components/header/Header";
 import CustomTable from "../../components/table/CustomTable";
-import { IDashboardData } from "../../services/dashboard-data";
-import { getDashboardTable } from "../../store/dashboard/dashboard";
+import {
+  getDashboardTable,
+  getDetailCardData,
+} from "../../store/dashboard/dashboard";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 // import { useNavigate } from "react-router-dom";
 import "./dashboardStyles.scss";
 import Modal from "../../components/modal/ModalComponent";
 import * as CONST from "../../resources/constants";
-import Tab from "../../components/tabComponents/Tab";
-import { getDetailCardData } from "../../store/dashboard/detail-card";
 import Loader from "../../components/loader/Loader";
+import DetailCardComponent from "../../components/detailCardComponent/DetailCardComponent";
 
 const Dashboard = () => {
   const dispatch = useAppDispatch();
@@ -18,13 +19,6 @@ const Dashboard = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [filteredTableData, setFilteredTableData] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const tabOptions = [
-    "Application",
-    "Data Protection",
-    "Application Architect",
-    "Software Packages",
-  ];
-
   const handleOpenModal = () => {
     setModalOpen(true);
   };
@@ -33,9 +27,11 @@ const Dashboard = () => {
     setModalOpen(false);
   };
 
-  const tableData: any = useAppSelector((state) => state.dashboard.data);
-  const detailData: IDashboardData | undefined = useAppSelector(
-    (state) => state.detailCard.data
+  const tableData: any = useAppSelector(
+    (state) => state.dashboard.dashboardData
+  );
+  const detailData: any = useAppSelector(
+    (state) => state.dashboard.detailCardData
   );
 
   function filterJSON(json: any, searchTerm: string) {
@@ -48,7 +44,12 @@ const Dashboard = () => {
 
   const onSearch = (e: any) => {
     setIsLoading(true);
-    setFilteredTableData(filterJSON(tableData, e));
+    const filterData = filterJSON(tableData, e);
+    if (filterData) {
+      setFilteredTableData(filterData);
+    } else {
+      console.log(filterData);
+    }
   };
 
   useEffect(() => {
@@ -101,10 +102,7 @@ const Dashboard = () => {
             className="card_crossButton"
             src={CONST.cross_icon}
           ></img>
-          <div className="card_Header">
-            <Tab tabOptions={tabOptions}></Tab>
-          </div>
-          <div className="card_Body"></div>
+          <DetailCardComponent></DetailCardComponent>
         </div>
       </Modal>
       {isLoading && <Loader></Loader>}

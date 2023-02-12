@@ -2,14 +2,12 @@ import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import landingReducer from "./landing/slice";
 import Auth from "./auth/user";
 import dashboardReducer from "./dashboard/dashboard";
-import detailCardReducer from "./dashboard/detail-card";
 
 const store = configureStore({
   reducer: {
     landing: landingReducer,
     auth: Auth,
     dashboard: dashboardReducer,
-    detailCard: detailCardReducer,
   },
 });
 
