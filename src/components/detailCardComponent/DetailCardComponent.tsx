@@ -105,10 +105,12 @@ const DetailCardComponent = ({ data, newData }: any) => {
 
   const handleFooterButton = (type: any) => {
     switch (type) {
-      case "save":
+      case "update":
         break;
       case "cancel":
-        setShowAlert(true);
+        if (data !== updatedData) {
+          setShowAlert(true);
+        }
         break;
 
       default:
@@ -144,9 +146,9 @@ const DetailCardComponent = ({ data, newData }: any) => {
                   : { background: " rgba(0, 86, 157, 0.5)" }
               }
               type="button"
-              onClick={() => handleFooterButton("save")}
+              onClick={() => handleFooterButton("update")}
             >
-              save
+              update
             </a>
             <a
               className="card_button"
