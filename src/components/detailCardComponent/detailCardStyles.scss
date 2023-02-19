@@ -26,12 +26,44 @@
   }
 
   &_Body {
-    display: flex;
-    align-content: flex-start;
-    flex-wrap: wrap;
     height: 100%;
     width: 95%;
     background-color: white;
     border-radius: 0px 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+  }
+
+  &_inputs {
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  &_footer {
+    display: flex;
+    align-self: end;
+    margin-right: 1rem;
+  }
+  &_button {
+    padding: 0.2rem;
+    width: 44%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 1.5rem;
+    border-radius: 4px;
+    background-color: rgba(29, 35, 39, 0.2);
+    cursor: pointer;
+    &_con {
+      display: flex;
+      width: 10rem;
+      justify-content: space-between;
+    }
+    &_save {
+      background-color: rgba(0, 86, 157, 0.5);
+    }
   }
 }

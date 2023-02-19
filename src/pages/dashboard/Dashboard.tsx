@@ -12,6 +12,7 @@ import Modal from "../../components/modal/ModalComponent";
 import * as CONST from "../../resources/constants";
 import Loader from "../../components/loader/Loader";
 import DetailCardComponent from "../../components/detailCardComponent/DetailCardComponent";
+import Alert from "../../components/alertComponent/Alert";
 
 const Dashboard = () => {
   const dispatch = useAppDispatch();
@@ -19,12 +20,10 @@ const Dashboard = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [filteredTableData, setFilteredTableData] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [showAlert, setShowAlert] = useState(false);
+  const [updatedDetailData, setUpdatedDetailData] = useState<any>();
   const handleOpenModal = () => {
     setModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setModalOpen(false);
   };
 
   const tableData: any = useAppSelector(
@@ -33,6 +32,14 @@ const Dashboard = () => {
   const detailData: any = useAppSelector(
     (state) => state.dashboard.detailCardData
   );
+
+  const handleCloseModal = () => {
+    if (detailData === updatedDetailData) {
+      setModalOpen(false);
+    } else {
+      setShowAlert(true);
+    }
+  };
 
   function filterJSON(json: any, searchTerm: string) {
     const filtered = json.filter(function (obj: any) {
@@ -104,10 +111,25 @@ const Dashboard = () => {
             className="card_crossButton"
             src={CONST.cross_icon}
           ></img>
-          <DetailCardComponent data={detailData}></DetailCardComponent>
+          <DetailCardComponent
+            data={detailData}
+            newData={(e: any) => setUpdatedDetailData(e)}
+          ></DetailCardComponent>
         </div>
       </Modal>
       {isLoading && <Loader></Loader>}
+      {showAlert && (
+        <Alert
+          message={"Exit without saving your changes?"}
+          onYes={() => {
+            setModalOpen(false);
+            setShowAlert(false);
+          }}
+          onNo={() => {
+            setShowAlert(false);
+          }}
+        />
+      )}
     </div>
   );
 };
