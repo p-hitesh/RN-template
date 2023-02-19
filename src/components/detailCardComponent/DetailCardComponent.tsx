@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
+import {
+  getDashboardTable,
+  updateDetailCardData,
+} from "../../store/dashboard/dashboard";
+import { useAppDispatch } from "../../store/hooks";
 import Alert from "../alertComponent/Alert";
 import CommanInput from "../inputComponents/CommanInput";
 import Tab from "../tabComponents/Tab";
 import "./detailCardStyles.scss";
 
-const DetailCardComponent = ({ data, newData }: any) => {
+const DetailCardComponent = ({ data, newData, isUpdating }: any) => {
   const [updatedData, setUpdatedData] = useState<any>(data);
   const [tabIndex, setTabIndex] = useState<any>(0);
   const [showAlert, setShowAlert] = useState(false);
+  const dispatch = useAppDispatch();
 
   type TransformedData = {
     [key: string]: { title: string; value: any }[];
@@ -106,6 +112,13 @@ const DetailCardComponent = ({ data, newData }: any) => {
   const handleFooterButton = (type: any) => {
     switch (type) {
       case "update":
+        isUpdating(true);
+        dispatch(updateDetailCardData(updatedData)).then(() => {
+          dispatch(getDashboardTable()).then(() => {
+            isUpdating(false);
+          });
+        });
+        console.log(updatedData);
         break;
       case "cancel":
         if (data !== updatedData) {

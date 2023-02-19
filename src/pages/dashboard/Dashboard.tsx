@@ -95,6 +95,13 @@ const Dashboard = () => {
     // navigate("/detail", { state: e });
   };
 
+  const handleDetailUpdating = (e: any) => {
+    console.log(e);
+    if (e === true) {
+      setModalOpen(false);
+    }
+  };
+
   return (
     <div className="dashboardCon">
       <Header data={tableData} onSearch={onSearch}></Header>
@@ -114,6 +121,7 @@ const Dashboard = () => {
           <DetailCardComponent
             data={detailData}
             newData={(e: any) => setUpdatedDetailData(e)}
+            isUpdating={(e: any) => handleDetailUpdating(e)}
           ></DetailCardComponent>
         </div>
       </Modal>

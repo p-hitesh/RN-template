@@ -11,6 +11,7 @@
   top: 44%;
   left: 45%;
   transform: translate(-50%, -50%);
+  z-index: 400;
 }
 
 @keyframes spin {

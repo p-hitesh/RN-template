@@ -7,6 +7,7 @@ import DashboardDataService, {
 interface DashboardPageState {
   dashboardData?: IDashboardData;
   detailCardData?: IDashboardData;
+  updateCardData?: IDashboardData;
   loading: boolean;
   error?: string;
 }
@@ -14,6 +15,7 @@ interface DashboardPageState {
 const initialState: DashboardPageState = {
   dashboardData: undefined,
   detailCardData: undefined,
+  updateCardData: undefined,
   loading: false,
   error: undefined,
 };
@@ -41,10 +43,10 @@ export const getDetailCardData = createAsyncThunk(
 );
 
 export const updateDetailCardData = createAsyncThunk(
-  "dashboard/entry/{id}",
-  async (id: string, payload: any) => {
+  "dashboard/entry/{payload.id}",
+  async (payload: any) => {
     try {
-      return DashboardDataService.updateDetailCard(id, payload);
+      return DashboardDataService.updateDetailCard(payload.id, payload);
     } catch (error_) {
       return error_;
     }
@@ -77,6 +79,19 @@ const dashboardReducer = createSlice({
       state.detailCardData = action.payload;
     });
     builder.addCase(getDetailCardData.rejected, (state, action) => {
+      state.loading = false;
+      // action.payload contains error information
+      state.error = error(action.payload);
+    });
+
+    builder.addCase(updateDetailCardData.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(updateDetailCardData.fulfilled, (state, action) => {
+      state.loading = false;
+      state.updateCardData = action.payload;
+    });
+    builder.addCase(updateDetailCardData.rejected, (state, action) => {
       state.loading = false;
       // action.payload contains error information
       state.error = error(action.payload);
