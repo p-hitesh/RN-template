@@ -1,0 +1,37 @@
+.card {
+  &_Con {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 10px;
+    position: relative;
+    width: 50rem;
+    height: 26rem;
+    background: #9cbcd7;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+  }
+
+  &_crossButton {
+    mix-blend-mode: difference;
+    position: absolute;
+    right: 0.5rem;
+    height: 1rem;
+    top: 0.5rem;
+    cursor: pointer;
+  }
+  &_Header {
+    display: flex;
+    height: 2rem;
+  }
+
+  &_Body {
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 95%;
+    background-color: white;
+    border-radius: 0px 10px 10px 10px;
+  }
+}

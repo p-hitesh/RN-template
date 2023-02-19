@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import "./tabStyles.scss";
-function Tab(props: any) {
-  const { tabOptions } = props;
+function Tab({ tabOptions, selectedIndex }: any) {
   const [tabIndex, setTabIndex] = useState(0);
+
+  const handleSelection = (index: any) => {
+    setTabIndex(index);
+    selectedIndex(index);
+  };
+
   const OptionButton = ({ item, index }: any) => {
     return (
       <a
@@ -11,7 +16,7 @@ function Tab(props: any) {
         }
         type="button"
         onClick={() => {
-          setTabIndex(index);
+          handleSelection(index);
           // console.log(index);
         }}
       >

@@ -1,0 +1,21 @@
+.commanInput {
+  &_con {
+    display: flex;
+    width: 45%;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem;
+  }
+  &_label {
+    font-family: "Abhaya Libre Medium";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+  }
+  &_input {
+    border: 1px solid #00569d;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 0.5rem;
+  }
+}

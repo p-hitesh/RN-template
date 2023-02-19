@@ -35,11 +35,13 @@ const Dashboard = () => {
   );
 
   function filterJSON(json: any, searchTerm: string) {
-    return json.filter(function (obj: any) {
+    const filtered = json.filter(function (obj: any) {
       return Object.values(obj).some(function (val) {
         return String(val).toLowerCase().includes(searchTerm.toLowerCase());
       });
     });
+
+    return filtered.length > 0 ? filtered : [];
   }
 
   const onSearch = (e: any) => {
@@ -102,7 +104,7 @@ const Dashboard = () => {
             className="card_crossButton"
             src={CONST.cross_icon}
           ></img>
-          <DetailCardComponent></DetailCardComponent>
+          <DetailCardComponent data={detailData}></DetailCardComponent>
         </div>
       </Modal>
       {isLoading && <Loader></Loader>}
